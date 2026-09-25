@@ -126,7 +126,7 @@ String? gameRules(List<String> players, String p1Pick, String p2Pick,) {
 void displayTheFinalScore() {
   print("\n| ===== FINAL SCORE ===== |\n");
 
-  print("| Score -> ${playerNames[0]}: $player1Score | ${playerNames[1]}: $player2Score ");
+  print("| Score -> ${playerNames[0]}: $player1Score | ${players[1]}: $player2Score ");
   
   if (player1Score == player2Score) {
     print("\n| It's a tie! ");
@@ -135,6 +135,6 @@ void displayTheFinalScore() {
     print("\n| Overall winner: ${playerNames[0]}");
   }
   else {
-    print("\n| Overall winner: ${playerNames[1]}");
+    print("\n| Overall winner: ${players[1]}");
   }
 }

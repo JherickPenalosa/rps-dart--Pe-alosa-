@@ -1,8 +1,9 @@
-/// ROCK, PAPER, SCISSORS GAME ///
+/// ROCK, PAPER, SCISSORS SIMULATION ///
+
 import 'dart:io';
 
 // Assigned the list collection empty for now
-List<String> playerNames = [];
+List<String> players = [];
 
 /// This is the main method to run the program
 void main() {
@@ -11,20 +12,20 @@ void main() {
   int roundCount = 1;
   String playUtro;
   // Called the getplayername function to get its collection
-  playerNames = gettingPlayers();
+  players = gettingPlayers();
 
   do {
     // The game begins here
     print("\n| --- ROUND $roundCount --- ");
     // Player 1 pick
-    String p1pick = getPicks(playerNames[0]);
+    String p1pick = getPicks(players[0]);
     for (int blines = 0; blines < 30; blines++) {
       print('');
     }
     // Player 2 pick
-    String p2pick = getPicks(playerNames[1]);
+    String p2pick = getPicks(players[1]);
     // Call the decide winner function
-    whosTheWinner(playerNames, p1pick, p2pick);
+    whosTheWinner(players, p1pick, p2pick);
 
     stdout.write("\n| Play again? (y/n): ");
     String? playInput = stdin.readLineSync();
@@ -35,8 +36,7 @@ void main() {
   // Call the finalscore function
   displayTheFinalScore();
 }
-
-/// This the first method called to get the player names and return list of players
+/// This method gets the player names and return list of players
 List<String> gettingPlayers() {
 
   List<String> playersLists = [];
@@ -111,6 +111,7 @@ void whosTheWinner( List<String> players, String p1Pick, String p2Pick,) {
     "${players[1]}: $player2Score",
   );
 }
+
 /// This function decides the winner based on the game rules.
 String? gameRules(List<String> players, String p1Pick, String p2Pick,) {
   if (p1Pick == p2Pick) {
@@ -126,15 +127,15 @@ String? gameRules(List<String> players, String p1Pick, String p2Pick,) {
 void displayTheFinalScore() {
   print("\n| ===== FINAL SCORE ===== |\n");
 
-  print("| Score -> ${playerNames[0]}: $player1Score | ${playerNames[1]}: $player2Score ");
+  print("| Score -> ${players[0]}: $player1Score | ${players[1]}: $player2Score ");
   
   if (player1Score == player2Score) {
     print("\n| It's a tie! ");
   }
   else if (player1Score > player2Score) {
-    print("\n| Overall winner: ${playerNames[0]}");
+    print("\n| Overall winner: ${players[0]}");
   }
   else {
-    print("\n| Overall winner: ${playerNames[1]}");
+    print("\n| Overall winner: ${players[1]}");
   }
 }

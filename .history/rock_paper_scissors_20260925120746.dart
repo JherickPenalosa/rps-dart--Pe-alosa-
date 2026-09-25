@@ -1,42 +1,8 @@
-/// ROCK, PAPER, SCISSORS GAME ///
+/// ROCK, PAPER, SCISSORS SIMULATION ///
+
 import 'dart:io';
 
-// Assigned the list collection empty for now
-List<String> playerNames = [];
-
-/// This is the main method to run the program
-void main() {
-  print("\n| === ROCK, PAPER, SCISSORS === ");
-
-  int roundCount = 1;
-  String playUtro;
-  // Called the getplayername function to get its collection
-  playerNames = gettingPlayers();
-
-  do {
-    // The game begins here
-    print("\n| --- ROUND $roundCount --- ");
-    // Player 1 pick
-    String p1pick = getPicks(playerNames[0]);
-    for (int blines = 0; blines < 30; blines++) {
-      print('');
-    }
-    // Player 2 pick
-    String p2pick = getPicks(playerNames[1]);
-    // Call the decide winner function
-    whosTheWinner(playerNames, p1pick, p2pick);
-
-    stdout.write("\n| Play again? (y/n): ");
-    String? playInput = stdin.readLineSync();
-    playUtro = playInput?.trim().toLowerCase() ?? 'n';
-    roundCount++;
-  }
-  while (playUtro != 'n');
-  // Call the finalscore function
-  displayTheFinalScore();
-}
-
-/// This the first method called to get the player names and return list of players
+/// This method gets the player names and return list of players
 List<String> gettingPlayers() {
 
   List<String> playersLists = [];
@@ -49,6 +15,7 @@ List<String> gettingPlayers() {
     print('| No entered name. You will be "$p1Name".');
   }
   playersLists.add(p1Name); // The name will added to the list
+
   // Player 2 name input
   stdout.write("\n| Player 2 name: ");
   String? inputName2 = stdin.readLineSync();
@@ -62,7 +29,7 @@ List<String> gettingPlayers() {
 }
 
 /// This function process the pick of moves
-String getPicks(String playerName) {
+String getPick(String playerName) {
   while (true) {
     stdout.write( "\n| $playerName enter your move (rock/paper/scissors): ");
     String? playerPick = stdin.readLineSync();
@@ -76,8 +43,9 @@ String getPicks(String playerName) {
 }
 /// This function validates the picked option.
 String? validatePick(String? playerPick) {
-  if (playerPick == null) return null;
-
+  if (playerPick == null) {
+    return null;
+  }
   String pick = playerPick.trim().toLowerCase();
 
   List<String> options = ['rock', 'paper', 'scissors'];
@@ -94,9 +62,9 @@ int player2Score = 0;
 
 /// This function displays the winner and updates the scores.
 void whosTheWinner( List<String> players, String p1Pick, String p2Pick,) {
-
+    
   print( "\n| ${players[0]} chose $p1Pick. ${players[1]} chose $p2Pick");
-  String? winner = gameRules(players, p1Pick, p2Pick);
+  String? winner = gameRule(players, p1Pick, p2Pick);
 
   if (winner == players[0]) {
     player1Score++;
@@ -112,7 +80,7 @@ void whosTheWinner( List<String> players, String p1Pick, String p2Pick,) {
   );
 }
 /// This function decides the winner based on the game rules.
-String? gameRules(List<String> players, String p1Pick, String p2Pick,) {
+String? gameRule(List<String> players, String p1Pick, String p2Pick,) {
   if (p1Pick == p2Pick) {
     return null;
   }
@@ -121,20 +89,56 @@ String? gameRules(List<String> players, String p1Pick, String p2Pick,) {
   else if (p1Pick == 'scissors' && p2Pick == 'paper')  return players[0]; 
   else  return players[1]; 
 }
+// Assigned the list collection empty for now
+List<String> players = [];
 
+/// This is the main method to run the program
+void main() {
+
+  print("\n| === ROCK, PAPER, SCISSORS === ");
+
+  int roundCount = 1;
+  String playUtro;
+
+  // Called the getplayername function to get its collection
+  players = gettingPlayers();
+
+  do {
+    // The game begins here
+    print("\n| --- ROUND $roundCount --- ");
+    // Player 1 pick
+    String p1pick = getPick(players[0]);
+    for (int blines = 0; blines < 30; blines++) {
+      print('');
+    }
+    // Player 2 pick
+    String p2pick = getPick(players[1]);
+
+    // Call the decide winner function
+    whosTheWinner(players, p1pick, p2pick);
+
+    stdout.write("\n| Play again? (y/n): ");
+    String? playInput = stdin.readLineSync();
+    playUtro = playInput?.trim().toLowerCase() ?? 'n';
+    roundCount++;
+  }
+  while (playUtro != 'n');
+  // Call the finalscore function
+  displayTheFinalScore();
+}
 /// This is the last function, and this displays the overall winner
 void displayTheFinalScore() {
   print("\n| ===== FINAL SCORE ===== |\n");
 
-  print("| Score -> ${playerNames[0]}: $player1Score | ${playerNames[1]}: $player2Score ");
+  print("| Score -> ${players[0]}: $player1Score | ${players[1]}: $player2Score ");
   
   if (player1Score == player2Score) {
-    print("\n| It's a tie! ");
+    print("\n| It's a draw! ");
   }
   else if (player1Score > player2Score) {
-    print("\n| Overall winner: ${playerNames[0]}");
+    print("\n| Overall winner: ${players[0]}");
   }
   else {
-    print("\n| Overall winner: ${playerNames[1]}");
+    print("\n| Overall winner: ${players[1]}");
   }
 }
