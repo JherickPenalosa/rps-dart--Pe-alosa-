@@ -2,12 +2,13 @@
 
 import 'dart:io';
 
-/// This method gets the player names and return list of players
+/// This method gets the user name and return list of players
 List<String> gettingPlayers() {
   List<String> players = [];
 
   // --- Player 1 ---
   stdout.write("\n| Enter player 1 name: ");
+
   String? p1Input = stdin.readLineSync();
   String p1Name = p1Input?.trim() ?? "";
   if (p1Name.isEmpty) {
@@ -18,6 +19,7 @@ List<String> gettingPlayers() {
 
   // --- Player 2 ---
   stdout.write("\n| Enter player 2 name: ");
+
   String? p2Input = stdin.readLineSync();
   String p2Name = p2Input?.trim() ?? "";
   if (p2Name.isEmpty) {

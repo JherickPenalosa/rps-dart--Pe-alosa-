@@ -2,7 +2,7 @@
 
 import 'dart:io';
 
-/// This method gets the player names and return list of players
+/// This method gets the player name and return list of players
 List<String> gettingPlayers() {
   List<String> players = [];
 
