@@ -59,10 +59,12 @@ String? validatePick(String? playerPick) {
   return null;
 }
 
+
 /// These are the scores
 int player1Score = 0;
 int player2Score = 0;
 
+/// This class is used to display winner
 /// This function displays the winner and updates the scores.
 void whosTheWinner( List<String> players, String p1Pick, String p2Pick,) {
     

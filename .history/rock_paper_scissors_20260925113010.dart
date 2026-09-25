@@ -59,34 +59,34 @@ String? validatePick(String? playerPick) {
   return null;
 }
 
+
 /// These are the scores
 int player1Score = 0;
 int player2Score = 0;
 
-/// This function displays the winner and updates the scores.
-void whosTheWinner( List<String> players, String p1Pick, String p2Pick,) {
-    
-  print( "\n| ${players[0]} chose $p1Pick. ${players[1]} chose $p2Pick");
-  String? winner = gameRule(players, p1Pick, p2Pick);
+/// This class is used to display winner
+void whosTheWinner(List<String> players, String p1_pick, String p2_pick) {
 
-  if (winner == players[0]) {
-    player1Score++;
-  } else if (winner == players[1]) {
-    player2Score++;
-  }
-  String? result =
-      winner == null ? null : "$winner wins the round!";
-  print('| Result: ${result ?? "It's a draw!"}');
-  print(
-    "| Score -> ${players[0]}: $player1Score | "
-    "${players[1]}: $player2Score",
-  );
+  print("\n| ${players[0]} chose $p1_pick. ${players[1]} chose $p2_pick ");
+  String result = gameRule(players, p1_pick, p2_pick);
+  if (result.contains(players[0])) player1Score++;
+  if (result.contains(players[1])) player2Score++;
+  
+  print("| Result: $result");
+  print("| Score -> ${players[0]}: $player1Score | ${players[1]}: $player2Score ");
 }
+
+/// This class decides whos the winner by game rule
 /// This function decides the winner based on the game rules.
-String? gameRule(List<String> players, String p1Pick, String p2Pick,) {
+String? gameRule(
+  List<String> players,
+  String p1Pick,
+  String p2Pick,
+) {
   if (p1Pick == p2Pick) {
     return null;
   }
+
   if (p1Pick == 'rock' && p2Pick == 'scissors') {
     return players[0];
   } else if (p1Pick == 'paper' && p2Pick == 'rock') {
@@ -96,10 +96,7 @@ String? gameRule(List<String> players, String p1Pick, String p2Pick,) {
   } else {
     return players[1];
   }
-}
-
-
-
+}S
 
 // Assigned the list collection empty for now
 List<String> players = [];

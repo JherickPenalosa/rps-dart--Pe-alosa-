@@ -59,6 +59,7 @@ String? validatePick(String? playerPick) {
   return null;
 }
 
+
 /// These are the scores
 int player1Score = 0;
 int player2Score = 0;
