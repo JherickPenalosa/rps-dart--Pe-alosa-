@@ -125,7 +125,7 @@ void main() {
     playAgain = playInput?.trim().toLowerCase() ?? 'n';
     round++;
   }
-  while (playAgain != 'n');
+  while (playAgain.toLowerCase() != 'n');
   // Call the finalscore function
   finalScore();
 }

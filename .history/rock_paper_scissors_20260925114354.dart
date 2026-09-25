@@ -121,11 +121,10 @@ void main() {
     whosTheWinner(players, p1pick, p2pick);
 
     stdout.write("\n| Play again? (y/n): ");
-    String? playInput = stdin.readLineSync();
-    playAgain = playInput?.trim().toLowerCase() ?? 'n';
+    playAgain = stdin.readLineSync() ?? 'n';
     round++;
   }
-  while (playAgain != 'n');
+  while (playAgain.toLowerCase() != 'n');
   // Call the finalscore function
   finalScore();
 }

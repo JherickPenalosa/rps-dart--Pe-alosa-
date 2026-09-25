@@ -91,7 +91,8 @@ String? gameRule(List<String> players, String p1Pick, String p2Pick,) {
   if (p1Pick == 'rock' && p2Pick == 'scissors') { return players[0]; }
   else if (p1Pick == 'paper' && p2Pick == 'rock') { return players[0]; } 
   else if (p1Pick == 'scissors' && p2Pick == 'paper') { return players[0]; } 
-  else { return players[1]; }
+  else { return players[1];
+  }
 }
 // Assigned the list collection empty for now
 List<String> players = [];
@@ -121,11 +122,10 @@ void main() {
     whosTheWinner(players, p1pick, p2pick);
 
     stdout.write("\n| Play again? (y/n): ");
-    String? playInput = stdin.readLineSync();
-    playAgain = playInput?.trim().toLowerCase() ?? 'n';
+    playAgain = stdin.readLineSync() ?? 'n';
     round++;
   }
-  while (playAgain != 'n');
+  while (playAgain.toLowerCase() != 'n');
   // Call the finalscore function
   finalScore();
 }

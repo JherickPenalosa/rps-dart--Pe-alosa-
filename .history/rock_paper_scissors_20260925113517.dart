@@ -4,8 +4,7 @@ import 'dart:io';
 
 /// This method gets the player names and return list of players
 List<String> gettingPlayers() {
-
-  List<String> playersLists = [];
+  List<String> players = [];
 
   // --- Player 1 ---
   stdout.write("\n| Enter player 1 name: ");
@@ -15,7 +14,7 @@ List<String> gettingPlayers() {
     p1Name = "Player 1";
     print('| No name entered. Using "$p1Name".');
   }
-  playersLists.add(p1Name);
+  players.add(p1Name);
 
   // --- Player 2 ---
   stdout.write("\n| Enter player 2 name: ");
@@ -25,9 +24,9 @@ List<String> gettingPlayers() {
     p2Name = "Player 2";
     print('| No name entered. Using "$p2Name".');
   }
-  playersLists.add(p2Name);
+  players.add(p2Name);
 
-  return playersLists;
+  return players;
 }
 
 /// This function process the pick of moves
@@ -88,14 +87,19 @@ String? gameRule(List<String> players, String p1Pick, String p2Pick,) {
   if (p1Pick == p2Pick) {
     return null;
   }
-  if (p1Pick == 'rock' && p2Pick == 'scissors') { return players[0]; }
-  else if (p1Pick == 'paper' && p2Pick == 'rock') { return players[0]; } 
-  else if (p1Pick == 'scissors' && p2Pick == 'paper') { return players[0]; } 
-  else { return players[1]; }
+  if (p1Pick == 'rock' && p2Pick == 'scissors') {
+    return players[0];
+  } else if (p1Pick == 'paper' && p2Pick == 'rock') {
+    return players[0];
+  } else if (p1Pick == 'scissors' && p2Pick == 'paper') {
+    return players[0];
+  } else {
+    return players[1];
+  }
 }
+
 // Assigned the list collection empty for now
 List<String> players = [];
-
 /// This is the main method to run the program
 void main() {
 
@@ -110,8 +114,10 @@ void main() {
   do {
     // The game begins here
     print("\n| --- ROUND $round --- ");
+
     // Player 1 pick
     String p1pick = getPick(players[0]);
+
     for (int blines = 0; blines < 30; blines++) {
       print('');
     }
@@ -121,14 +127,14 @@ void main() {
     whosTheWinner(players, p1pick, p2pick);
 
     stdout.write("\n| Play again? (y/n): ");
-    String? playInput = stdin.readLineSync();
-    playAgain = playInput?.trim().toLowerCase() ?? 'n';
+    playAgain = stdin.readLineSync() ?? 'n';
     round++;
   }
-  while (playAgain != 'n');
+  while (playAgain.toLowerCase() != 'n');
   // Call the finalscore function
   finalScore();
 }
+
 /// This is the last function, and this displays the overall winner
 void finalScore() {
   print("\n| ===== FINAL SCORE ===== |\n");
